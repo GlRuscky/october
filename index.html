@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>october</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================
+         FUNDO
+    ========================== -->
+
+    <div class="background"></div>
+
+    <div class="stars" id="stars"></div>
+
+    <div class="leaves" id="leaves"></div>
+
+    <div class="moon">
+        <div class="moon-shadow"></div>
+    </div>
+
+
+    <!-- =========================
+         TELA DE ENTRADA
+    ========================== -->
+
+    <main class="landing" id="landing">
+
+        <div class="content">
+
+            <p class="eyebrow">
+                somewhere in october
+            </p>
+
+            <h1>october</h1>
+
+            <p class="subtitle">
+                some things are only<br>
+                meant to be remembered.
+            </p>
+
+            <button class="enter-button" id="enterButton">
+                <span>enter</span>
+                <span class="arrow">→</span>
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         SENHA
+    ========================== -->
+
+    <section class="password-screen" id="passwordScreen">
+
+        <div class="password-container">
+
+            <button class="close-button" id="closeButton">
+                ×
+            </button>
+
+            <p class="password-eyebrow">
+                a place with a key
+            </p>
+
+            <h2>october</h2>
+
+            <p class="password-description">
+                if you were meant to be here,<br>
+                you probably already know the key.
+            </p>
+
+            <form id="passwordForm">
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        placeholder="password"
+                        autocomplete="off"
+                    >
+
+                    <span class="input-line"></span>
+
+                </div>
+
+                <button type="submit" class="unlock-button">
+                    unlock
+                </button>
+
+            </form>
+
+            <p class="error-message" id="errorMessage">
+                maybe this isn't your october.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HISTÓRIA
+    ========================== -->
+
+    <main class="story" id="story">
+
+
+        <!-- =========================
+             INTRO
+        ========================== -->
+
+        <section class="story-section intro-section">
+
+            <div class="story-content">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <p class="small-title">
+                    THE BEGINNING
+                </p>
+
+                <h2>
+                    Nós voltamos<br>
+                    a nos falar em outubro.
+                </h2>
+
+                <div class="scroll-indicator">
+                    <span>scroll</span>
+                    <span>↓</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OCTOBER
+        ========================== -->
+
+        <section class="story-section october-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <p class="small-title">
+                    OCTOBER
+                </p>
+
+                <p class="story-text large">
+                    Nunca tive um mês tão importante
+                    na minha vida quanto aquele.
+                </p>
+
+                <p class="story-text">
+                    Naquele momento, eu senti que havia
+                    feito uma escolha que mudaria a minha vida.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MEMÓRIAS
+        ========================== -->
+
+        <section class="story-section memories-section">
+
+            <div class="story-content">
+
+                <span class="section-number">
+                    03
+                </span>
+
+                <p class="small-title">
+                    THOSE DAYS
+                </p>
+
+                <div class="memory-list">
+
+                    <p>
+                        Aqueles dias em que nos vimos.
+                    </p>
+
+                    <p>
+                        As conversas que tivemos.
+                    </p>
+
+                    <p>
+                        Os gatos que você adotou.
+                    </p>
+
+                    <p>
+                        As tantas músicas que dedicamos
+                        um ao outro.
+                    </p>
+
+                </div>
+
+                <p class="story-text memory-ending">
+                    Músicas que ainda ouço até hoje,
+                    quase sempre com você passando
+                    pela minha cabeça.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DATAS E PLAYLISTS
+        ========================== -->
+
+        <section class="story-section archive-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    04
+                </span>
+
+                <p class="small-title">
+                    KEPT
+                </p>
+
+                <p class="story-text">
+                    Eu guardei as datas mais importantes
+                    que tivemos juntos.
+                </p>
+
+                <p class="story-text">
+                    As músicas continuam salvas dentro
+                    de playlists criadas com o seu nome,
+                    como se eu pudesse guardar aqueles
+                    momentos exatamente onde eles estavam.
+                </p>
+
+                <div class="archive-symbol">
+                    ♡
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CARTAS
+        ========================== -->
+
+        <section class="story-section letters-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    05
+                </span>
+
+                <p class="small-title">
+                    UNSENT
+                </p>
+
+                <h2>
+                    Eu perdi a conta
+                    de quantas cartas
+                    escrevi para você.
+                </h2>
+
+                <p class="story-text">
+                    E, mesmo assim, nunca as entreguei.
+                </p>
+
+                <p class="story-text">
+                    Eram ideias, frases incompletas,
+                    pensamentos que às vezes nem consegui
+                    terminar.
+                </p>
+
+                <p class="story-text emphasis">
+                    Mas todos saíam do fundo
+                    do meu coração.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AMAR SEM AMARRAS
+        ========================== -->
+
+        <section class="story-section love-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    06
+                </span>
+
+                <p class="small-title">
+                    WITHOUT CHAINS
+                </p>
+
+                <p class="story-text large">
+                    Talvez eu quisesse mostrar a você
+                    que eu poderia cumprir aquilo
+                    que havia dito.
+                </p>
+
+                <p class="story-text">
+                    Te mostrar, a cada dia que passasse,
+                    o quanto te amava.
+                </p>
+
+                <p class="story-text">
+                    Queria mostrar que eu era diferente.
+                </p>
+
+                <p class="story-text emphasis">
+                    Que havia decidido te amar sem amarras.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PEQUENAS COISAS
+        ========================== -->
+
+        <section class="story-section little-things-section">
+
+            <div class="story-content">
+
+                <span class="section-number">
+                    07
+                </span>
+
+                <p class="small-title">
+                    LITTLE THINGS
+                </p>
+
+                <div class="little-things">
+
+                    <div class="little-card">
+                        <span>01</span>
+                        <p>
+                            O calor suave da sua mão.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>02</span>
+                        <p>
+                            Sua expressão de felicidade
+                            quando conseguia algo que desejava.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>03</span>
+                        <p>
+                            A surpresa no seu rosto
+                            quando te entreguei aquele buquê de rosas.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>04</span>
+                        <p>
+                            As vezes em que eu te levava
+                            de bicicleta até sua casa.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>05</span>
+                        <p>
+                            Nossas risadas vendo sua
+                            For You do TikTok.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>06</span>
+                        <p>
+                            Os desenhos que fiz de você
+                            e nunca entreguei.
+                        </p>
+                    </div>
+
+                    <div class="little-card">
+                        <span>07</span>
+                        <p>
+                            Os presentes amassados,
+                            feitos à mão, de papel.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EU TENTEI
+        ========================== -->
+
+        <section class="story-section tried-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    08
+                </span>
+
+                <p class="small-title">
+                    I TRIED
+                </p>
+
+                <h2>
+                    Eu não sei se fui
+                    um bom namorado.
+                </h2>
+
+                <p class="story-text">
+                    Mas eu sei que fiz o meu melhor.
+                </p>
+
+                <p class="story-text">
+                    Eu queria te manter bem.
+                    Queria te ver feliz.
+                    Queria te manter longe de todos
+                    os problemas que pudessem te machucar.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DEPOIS DO FIM
+        ========================== -->
+
+        <section class="story-section after-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    09
+                </span>
+
+                <p class="small-title">
+                    AFTER
+                </p>
+
+                <p class="story-text large">
+                    E mesmo quando o fim chegou
+                    para aquilo que tivemos...
+                </p>
+
+                <p class="story-text">
+                    Eu ainda tentei continuar
+                    te fazendo feliz.
+                </p>
+
+                <p class="story-text">
+                    Mesmo distante.
+                </p>
+
+                <p class="story-text">
+                    Mesmo quando já não era
+                    a mesma coisa.
+                </p>
+
+                <p class="story-text">
+                    Mesmo quando os nossos
+                    "bom dia" começaram a desaparecer.
+                </p>
+
+                <p class="story-text">
+                    Mesmo quando os
+                    "eu te amo" já não eram mais ditos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             UMA PARTE DE VOCÊ
+        ========================== -->
+
+        <section class="story-section heart-section">
+
+            <div class="story-content narrow">
+
+                <div class="heart-symbol">
+                    ♡
+                </div>
+
+                <p class="story-text large">
+                    Cada pequena ação que eu ainda podia
+                    fazer era, de alguma forma,
+                    uma demonstração...
+                </p>
+
+                <p class="story-text emphasis">
+                    de que uma parte de você ainda
+                    permanecia intacta dentro do meu coração.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TORNAR-SE
+        ========================== -->
+
+        <section class="story-section becoming-section">
+
+            <div class="story-content narrow">
+
+                <span class="section-number">
+                    10
+                </span>
+
+                <p class="small-title">
+                    BECOMING
+                </p>
+
+                <p class="story-text large">
+                    Por sua causa,
+                    eu tentei me tornar alguém melhor.
+                </p>
+
+                <p class="story-text">
+                    Aprendi a tocar músicas que conseguiam
+                    dizer aquilo que eu sentia quando eu
+                    não conseguia encontrar palavras
+                    para te dizer.
+                </p>
+
+                <p class="story-text">
+                    As cartas continuaram sendo escritas.
+                </p>
+
+                <p class="story-text emphasis">
+                    E continuaram nunca sendo entregues.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MÚSICA
+        ========================== -->
+
+        <section class="story-section music-section">
+
+            <div class="story-content">
+
+                <div class="music-symbol">
+                    ♪
+                </div>
+
+                <p class="story-text large">
+                    E algumas vezes vieram acompanhadas
+                    de lágrimas enquanto eu tocava
+                    alguma música que me fazia lembrar de você.
+                </p>
+
+                <p class="small-title">
+                    maybe some things are too difficult
+                    to say out loud.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL
+        ========================== -->
+
+        <section class="story-section final-section">
+
+            <div class="story-content narrow">
+
+                <p class="story-text">
+                    Eu não sei se você vai ler isso.
+                </p>
+
+                <p class="story-text">
+                    Mas espero que, de alguma forma,
+                    isso chegue até você.
+                </p>
+
+                <div class="final-space"></div>
+
+                <p class="story-text large">
+                    Depois daquele mês...
+                </p>
+
+                <h2>
+                    outubro se tornou
+                    o meu mês preferido.
+                </h2>
+
+                <p class="story-text">
+                    E, junto com ele,
+                    o outono se tornou
+                    a minha estação preferida também.
+                </p>
+
+                <div class="final-divider"></div>
+
+                <p class="final-line">
+                    talvez porque, desde então,
+                </p>
+
+                <h3>
+                    outubro nunca tenha sido
+                    apenas outubro para mim.
+                </h3>
+
+                <div class="final-moon">
+                    ☾
+                </div>
+
+                <p class="final-date">
+                    october · 2026
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
