@@ -101,6 +101,356 @@ body::after {
     animation: twinkle infinite ease-in-out;
 }
 
+/* =========================
+   SONGS
+========================= */
+
+.songs-section {
+    position: relative;
+
+    padding-top: 15vh;
+    padding-bottom: 18vh;
+
+    background:
+        /* brilho vermelho suave no meio */
+        radial-gradient(
+            ellipse 90% 50% at 50% 50%,
+            rgba(125, 50, 44, 0.20) 0%,
+            rgba(125, 50, 44, 0.08) 45%,
+            transparent 75%
+        ),
+        /* começa e termina no mesmo tom do fundo do site */
+        linear-gradient(
+            to bottom,
+            #08090d 0%,
+            #0b0a0e 15%,
+            #130d11 38%,
+            #190f11 55%,
+            #130d11 72%,
+            #0b0a0e 88%,
+            #08090d 100%
+        );
+}
+
+.songs-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(91, 39, 34, 0.12),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 88%,
+            rgba(91, 39, 34, 0.08),
+            transparent 36%
+        );
+}
+
+.songs-section .story-content {
+    position: relative;
+    z-index: 2;
+}
+
+.songs-title {
+    max-width: 700px;
+
+    margin: 20px auto 30px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(38px, 5vw, 64px);
+
+    font-weight: 300;
+
+    line-height: 1.08;
+
+    color: #d5cdc4;
+}
+
+.songs-intro {
+    max-width: 540px;
+
+    margin: 0 auto 80px;
+
+    color: #817a73;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.03em;
+}
+
+
+.songs-grid {
+    width: min(100%, 1050px);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 28px;
+}
+
+
+/* CARD */
+
+.song-card {
+    overflow: hidden;
+
+    background:
+        rgba(255, 255, 255, 0.018);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.055);
+
+    transition:
+        transform 0.6s ease,
+        border-color 0.6s ease,
+        background 0.6s ease;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+}
+
+.story-content.visible .song-card {
+    animation:
+        songReveal 0.9s ease forwards;
+}
+
+.song-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.song-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.song-card:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.song-card:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+.song-card:nth-child(5) {
+    animation-delay: 0.32s;
+}
+
+.song-card:nth-child(6) {
+    animation-delay: 0.40s;
+}
+
+.song-card:nth-child(7) {
+    animation-delay: 0.48s;
+}
+
+.song-card:nth-child(8) {
+    animation-delay: 0.56s;
+}
+
+.song-card:nth-child(9) {
+    animation-delay: 0.64s;
+}
+
+.song-card:nth-child(10) {
+    animation-delay: 0.72s;
+}
+
+
+.song-card:hover {
+    transform: translateY(-7px);
+
+    background:
+        rgba(117, 53, 47, 0.055);
+
+    border-color:
+        rgba(155, 91, 82, 0.25);
+}
+
+
+/* COVER */
+
+.song-cover {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background:
+        #111216;
+}
+
+.song-cover img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 1s ease,
+        filter 1s ease;
+}
+
+.song-card:hover .song-cover img {
+    transform: scale(1.045);
+
+    filter:
+        brightness(0.9);
+}
+
+
+/* INFO */
+
+.song-info {
+    padding: 28px 30px 34px;
+
+    text-align: left;
+}
+
+.song-number {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #70413b;
+
+    font-size: 10px;
+
+    letter-spacing: 0.22em;
+}
+
+.song-info h3 {
+    margin: 0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 29px;
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    color: #d0c8bf;
+}
+
+.song-artist {
+    margin-top: 8px;
+
+    color: #746d67;
+
+    font-size: 11px;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+/* QUOTE */
+
+.song-quote {
+    margin-top: 34px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 22px;
+
+    line-height: 1.35;
+
+    font-style: italic;
+
+    color: #bcb4ab;
+}
+
+
+
+/* OCTOBER */
+
+.song-card-featured {
+    border-color:
+        rgba(155, 91, 82, 0.18);
+}
+
+.song-card-featured .song-number {
+    color: #9b5b52;
+}
+
+.song-card-featured .song-info h3 {
+    font-size: 34px;
+}
+
+
+/* ANIMATION */
+
+@keyframes songReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .songs-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 22px;
+    }
+
+    .songs-title {
+        font-size: 38px;
+    }
+
+    .songs-intro {
+        margin-bottom: 50px;
+    }
+
+    .song-info {
+        padding:
+            25px 25px 30px;
+    }
+
+    .song-info h3 {
+        font-size: 27px;
+    }
+
+    .song-card-featured .song-info h3 {
+        font-size: 30px;
+    }
+
+}
+
 @keyframes twinkle {
     0%, 100% {
         opacity: 0.15;
@@ -1152,4 +1502,343 @@ body::after {
     .final-space {
         height: 18vh;
     }
+}
+
+/* =========================
+   SONG PLAYER
+========================= */
+
+.song-cover {
+    position: relative;
+}
+
+.song-play {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: rgba(8, 9, 13, 0);
+
+    color: #eee8df;
+    cursor: pointer;
+
+    transition: background 0.6s ease;
+}
+
+.song-cover:hover .song-play,
+.song-card.playing .song-play {
+    background: rgba(8, 9, 13, 0.3);
+}
+
+.song-play-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid rgba(238, 232, 223, 0.5);
+
+    background: rgba(8, 9, 13, 0.35);
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    transform: scale(0.92);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        border-color 0.6s ease;
+}
+
+.song-play-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.song-play-icon .icon-pause {
+    display: none;
+}
+
+.song-card.playing .song-play-icon .icon-play {
+    display: none;
+}
+
+.song-card.playing .song-play-icon .icon-pause {
+    display: block;
+}
+
+.song-cover:hover .song-play-icon,
+.song-play:focus-visible .song-play-icon,
+.song-card.playing .song-play-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.song-card.playing .song-play-icon {
+    border-color: rgba(190, 120, 110, 0.8);
+}
+
+/* celular: o botão fica sempre visível, bem sutil */
+@media (hover: none) {
+    .song-play-icon {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+/* linha de progresso */
+.song-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: #9b5b52;
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    pointer-events: none;
+}
+
+/* sem áudio ainda: o botão some e o card fica como antes */
+.song-card.no-audio .song-play {
+    display: none;
+}
+
+.song-card.playing {
+    border-color: rgba(155, 91, 82, 0.35);
+}
+
+
+/* =========================
+   CONSTELLATION
+========================= */
+
+.constellation-lead {
+    margin-top: 40px;
+}
+
+.constellation {
+    width: min(100%, 780px);
+    margin: 70px auto 0;
+}
+
+.constellation-sky {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 10;
+}
+
+.constellation-lines {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+.constellation-line {
+    stroke: rgba(238, 232, 223, 0.16);
+    stroke-width: 1;
+
+    opacity: 0;
+
+    transition: opacity 2s ease;
+}
+
+.constellation.in-view .constellation-line {
+    opacity: 1;
+}
+
+.constellation-star {
+    position: absolute;
+
+    width: 44px;
+    height: 44px;
+
+    margin: -22px 0 0 -22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: opacity 1.6s ease;
+}
+
+.constellation.in-view .constellation-star {
+    opacity: 1;
+}
+
+.constellation-star::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #eee8df;
+
+    box-shadow:
+        0 0 10px rgba(238, 232, 223, 0.45),
+        0 0 28px rgba(238, 232, 223, 0.15);
+
+    animation: twinkle 5s ease-in-out infinite;
+
+    transition:
+        background 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.constellation-star:nth-child(2n)::before {
+    animation-duration: 6.5s;
+    animation-delay: 1.2s;
+}
+
+.constellation-star:nth-child(3n)::before {
+    animation-duration: 4.2s;
+    animation-delay: 2.4s;
+}
+
+.constellation-star:hover::before,
+.constellation-star:focus-visible::before {
+    box-shadow:
+        0 0 14px rgba(238, 232, 223, 0.7),
+        0 0 40px rgba(238, 232, 223, 0.25);
+}
+
+.constellation-star.visited::before {
+    background: #d7a69d;
+}
+
+.constellation-star.active::before {
+    animation: none;
+
+    background: #e4b1a7;
+
+    transform: scale(1.5);
+
+    box-shadow:
+        0 0 16px rgba(228, 177, 167, 0.8),
+        0 0 50px rgba(228, 177, 167, 0.3);
+}
+
+.constellation-caption {
+    position: relative;
+
+    min-height: 150px;
+
+    margin-top: 25px;
+}
+
+.constellation-hint,
+.constellation-memory {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.constellation-hint {
+    color: #5f5a55;
+
+    font-size: 9px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+}
+
+.constellation-memory {
+    opacity: 0;
+    transform: translateY(6px);
+
+    pointer-events: none;
+}
+
+.constellation-caption.has-memory .constellation-hint {
+    opacity: 0;
+}
+
+.constellation-caption.has-memory .constellation-memory {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.constellation-memory-symbol {
+    color: #9b5b52;
+    font-size: 16px;
+}
+
+.constellation-memory-title {
+    color: #8f8881;
+
+    font-size: 10px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+}
+
+.constellation-memory-text {
+    max-width: 440px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+    font-style: italic;
+
+    line-height: 1.4;
+
+    color: #d4ccc2;
+}
+
+@media (max-width: 700px) {
+
+    .constellation {
+        margin-top: 50px;
+    }
+
+    .constellation-sky {
+        aspect-ratio: 4 / 5;
+    }
+
+    .constellation-memory-text {
+        font-size: 21px;
+    }
+
 }

@@ -167,7 +167,8 @@ function initializeStory() {
 
             },
             {
-                threshold: 0.15
+                threshold: 0,
+                rootMargin: "0px 0px -12% 0px"
             }
         );
 
@@ -273,3 +274,379 @@ function createLeaves() {
 createStars();
 
 createLeaves();
+
+/* =========================
+   SONG PLAYER
+========================= */
+
+/*
+   Os áudios ficam em assets/music/audio/ e têm o MESMO nome
+   da capa, só que em .mp3. Exemplo:
+   covers/01-i-wait-for-you.png  ->  audio/01-i-wait-for-you.mp3
+   Se o arquivo não existir, o botão de play simplesmente não aparece.
+*/
+
+const AUDIO_FOLDER = "assets/music/audio/";
+const AUDIO_EXTENSION = ".mp3";
+const MAX_SECONDS = 30;   // o trecho nunca passa disso
+const FADE_OUT_SECONDS = 2;
+
+let currentTrack = null;
+let progressFrame = null;
+
+function setupSongPlayers() {
+
+    document.querySelectorAll(".song-card").forEach((card) => {
+
+        const cover = card.querySelector(".song-cover");
+        const image = card.querySelector(".song-cover img");
+
+        if (!cover || !image) return;
+
+        const fileName =
+            image.getAttribute("src")
+                .split("/")
+                .pop()
+                .replace(/\.[^.]+$/, "");
+
+        const audio = new Audio();
+
+        audio.preload = "metadata";
+
+        audio.src =
+            AUDIO_FOLDER + fileName + AUDIO_EXTENSION;
+
+        const title =
+            card.querySelector("h3")?.textContent.trim() || "música";
+
+        const button = document.createElement("button");
+
+        button.className = "song-play";
+        button.type = "button";
+        button.setAttribute("aria-label", `Ouvir ${title}`);
+
+        button.innerHTML = `
+            <span class="song-play-icon">
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5.5v13l11-6.5z"/>
+                </svg>
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>
+                </svg>
+            </span>
+        `;
+
+        const bar = document.createElement("div");
+
+        bar.className = "song-progress";
+
+        cover.appendChild(button);
+        cover.appendChild(bar);
+
+        const track = { card, audio, bar };
+
+        // arquivo não existe ainda: some com o botão
+        audio.addEventListener("error", () => {
+            card.classList.add("no-audio");
+        });
+
+        audio.addEventListener("ended", () => {
+            finishTrack(track);
+        });
+
+        button.addEventListener("click", () => {
+            toggleTrack(track);
+        });
+
+    });
+
+}
+
+function toggleTrack(track) {
+
+    if (currentTrack === track && !track.audio.paused) {
+        pauseTrack(track);
+        return;
+    }
+
+    if (currentTrack && currentTrack !== track) {
+        finishTrack(currentTrack);
+    }
+
+    currentTrack = track;
+
+    track.audio.volume = 0;
+
+    track.audio.play()
+        .then(() => {
+            track.card.classList.add("playing");
+            progressFrame = requestAnimationFrame(updateProgress);
+        })
+        .catch(() => {
+            track.card.classList.add("no-audio");
+        });
+
+}
+
+function pauseTrack(track) {
+
+    track.audio.pause();
+
+    track.card.classList.remove("playing");
+
+    cancelAnimationFrame(progressFrame);
+
+}
+
+function finishTrack(track) {
+
+    track.audio.pause();
+
+    track.audio.currentTime = 0;
+
+    track.bar.style.transform = "scaleX(0)";
+
+    track.card.classList.remove("playing");
+
+    cancelAnimationFrame(progressFrame);
+
+    if (currentTrack === track) {
+        currentTrack = null;
+    }
+
+}
+
+function updateProgress() {
+
+    if (!currentTrack) return;
+
+    const { audio, bar } = currentTrack;
+
+    const time = audio.currentTime;
+
+    const limit =
+        Math.min(MAX_SECONDS, audio.duration || MAX_SECONDS);
+
+    // entra e sai suavemente
+    const fadeIn = Math.min(1, time / 0.8);
+
+    const fadeOut =
+        Math.min(1, Math.max(0, (limit - time) / FADE_OUT_SECONDS));
+
+    audio.volume = Math.max(0, Math.min(1, fadeIn * fadeOut));
+
+    bar.style.transform = `scaleX(${Math.min(1, time / limit)})`;
+
+    if (time >= limit) {
+        finishTrack(currentTrack);
+        return;
+    }
+
+    progressFrame = requestAnimationFrame(updateProgress);
+
+}
+
+// pausa se sair da seção ou trocar de aba
+function setupSongAutoPause() {
+
+    const section = document.querySelector(".songs-section");
+
+    if (section) {
+
+        new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (!entry.isIntersecting && currentTrack) {
+                    finishTrack(currentTrack);
+                }
+
+            });
+
+        }, { threshold: 0 }).observe(section);
+
+    }
+
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden && currentTrack) {
+            pauseTrack(currentTrack);
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CONSTELLATION
+========================= */
+
+/*
+   Cada estrela é uma lembrança.
+   x e y são posições em % dentro do céu (0 a 100).
+   Para adicionar uma estrela, é só colocar mais uma linha aqui
+   e, se quiser ligá-la a outra, adicionar um par em LINKS.
+*/
+
+const MEMORIES = [
+    {
+        x: 12, y: 68,
+        title: "Carinho",
+        text: "O cafuné que eu amava fazer em você."
+    },
+    {
+        x: 27, y: 36,
+        title: "Os vídeos",
+        text: "Os vídeos que a gente mandava um para o outro para ver quando estivessemos junto."
+    },
+    {
+        x: 44, y: 58,
+        title: "Historias",
+        text: "As histoias das suas personagens preferidas do lol que eu contava para você."
+    },
+    {
+        x: 50, y: 20,
+        title: "Ataque carinhoso",
+        text: "Os ataques de beijos que eu dava em você."
+    },
+    {
+        x: 68, y: 42,
+        title: "Amor aconchegante",
+        text: "Você batendo na cama, dizendo sem palavras: “vem, fica aqui”."
+    },
+    {
+        x: 85, y: 22,
+        title: "Batimentos",
+        text: "As vezes em que eu deitava e o abraçava com meu rosto em seu peito para eu ouvir os batimentos do seu coração S2."
+    },
+    {
+        x: 81, y: 74,
+        title: "Musicas declaradas",
+        text: "Quando a gente ouvia as musicas que você pedia para eu ouvir com você."
+    }
+];
+
+// pares de estrelas ligadas por uma linha (posição na lista acima, começando em 0)
+const LINKS = [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [2, 4],
+    [4, 5],
+    [4, 6]
+];
+
+function createConstellation() {
+
+    const sky = document.getElementById("constellationSky");
+    const lines = document.getElementById("constellationLines");
+    const caption = document.getElementById("constellationCaption");
+
+    if (!sky || !lines || !caption) return;
+
+    const memorySymbol = caption.querySelector(".constellation-memory-symbol");
+    const memoryTitle = caption.querySelector(".constellation-memory-title");
+    const memoryText = caption.querySelector(".constellation-memory-text");
+
+    let activeStar = null;
+
+    // as estrelas aparecem quando o céu entra na tela
+    new IntersectionObserver((entries, observer) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+                sky.parentElement.classList.add("in-view");
+                observer.disconnect();
+            }
+
+        });
+
+    }, { threshold: 0.35 }).observe(sky);
+
+    // linhas
+    LINKS.forEach(([from, to], index) => {
+
+        const line =
+            document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+        line.setAttribute("x1", MEMORIES[from].x);
+        line.setAttribute("y1", MEMORIES[from].y);
+        line.setAttribute("x2", MEMORIES[to].x);
+        line.setAttribute("y2", MEMORIES[to].y);
+
+        line.setAttribute("vector-effect", "non-scaling-stroke");
+
+        line.classList.add("constellation-line");
+
+        line.style.transitionDelay = `${0.4 + index * 0.35}s`;
+
+        lines.appendChild(line);
+
+    });
+
+    // estrelas
+    MEMORIES.forEach((memory, index) => {
+
+        const star = document.createElement("button");
+
+        star.type = "button";
+        star.className = "constellation-star";
+
+        star.setAttribute("aria-label", memory.title);
+
+        star.style.left = `${memory.x}%`;
+        star.style.top = `${memory.y}%`;
+
+        star.style.transitionDelay = `${index * 0.25}s`;
+
+        star.addEventListener("click", () => {
+
+            // clicar na estrela aberta fecha
+            if (activeStar === star) {
+                star.classList.remove("active");
+                caption.classList.remove("has-memory");
+                activeStar = null;
+                return;
+            }
+
+            if (activeStar) {
+                activeStar.classList.remove("active");
+            }
+
+            star.classList.add("active", "visited");
+
+            activeStar = star;
+
+            // troca o texto com uma pequena pausa para o fade
+            caption.classList.remove("has-memory");
+
+            setTimeout(() => {
+
+                if (activeStar !== star) return;
+
+                memorySymbol.textContent = "✦";
+                memoryTitle.textContent = memory.title;
+                memoryText.textContent = memory.text;
+
+                caption.classList.add("has-memory");
+
+            }, 350);
+
+        });
+
+        sky.appendChild(star);
+
+    });
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+setupSongPlayers();
+setupSongAutoPause();
+createConstellation();
