@@ -1862,9 +1862,10 @@ body::after {
 
     margin: 0 auto;
 
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
 
     gap: 60px 38px;
 }
@@ -1872,23 +1873,9 @@ body::after {
 .polaroid {
     --tilt: 0deg;
 
+    width: calc((100% - 76px) / 3);
+
     padding: 14px 14px 0;
-
-    background: #e6dfd3;
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.55),
-        0 2px 6px rgba(0, 0, 0, 0.4);
-
-    opacity: 0;
-
-    transform:
-        translateY(30px)
-        rotate(var(--tilt));
-
-    transition:
-        opacity 1.4s ease,
-        transform 1s ease;
 }
 
 .polaroid.in-view {
@@ -1972,12 +1959,12 @@ body::after {
 @media (max-width: 700px) {
 
     .polaroids {
-        grid-template-columns: repeat(2, 1fr);
-
         gap: 40px 18px;
     }
 
     .polaroid {
+        width: calc((100% - 18px) / 2);
+
         padding: 10px 10px 0;
     }
 
