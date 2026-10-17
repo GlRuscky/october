@@ -119,7 +119,7 @@ function initializeStory() {
 ========================= */
 
 function createStars() {
-    const numberOfStars = window.innerWidth < 700 ? 70 : 130;
+    const numberOfStars = window.innerWidth < 700 ? 40 : 110;
 
     for (let i = 0; i < numberOfStars; i++) {
         const star = document.createElement("span");
@@ -143,7 +143,7 @@ function createStars() {
 ========================= */
 
 function createLeaves() {
-    const numberOfLeaves = window.innerWidth < 700 ? 8 : 14;
+    const numberOfLeaves = window.innerWidth < 700 ? 6 : 12;
 
     for (let i = 0; i < numberOfLeaves; i++) {
         const leaf = document.createElement("span");
